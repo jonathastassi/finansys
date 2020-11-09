@@ -1,6 +1,7 @@
+import { BaseResourceModel } from "../../../shared/models/base.resource.model";
 import { Category } from "../../categories/shared/category";
 
-export class Entry {
+export class Entry implements BaseResourceModel {
   constructor(
     public id?: number,
     public name?: string,
@@ -11,7 +12,12 @@ export class Entry {
     public paid?: boolean,
     public categoryId?: number,
     public category?: Category
-  ) {}
+  ) {
+  }
+
+  public fromJson<this>(jsonData: any): Entry {
+    throw new Error("Method not implemented.");
+  }
 
   static types = {
     expense: 'Despesa',
@@ -22,5 +28,5 @@ export class Entry {
     return this.paid ? 'Pago' : 'Pendente';
   }
 
-  
+
 }

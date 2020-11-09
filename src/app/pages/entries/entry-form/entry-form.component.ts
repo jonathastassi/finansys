@@ -42,8 +42,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
     monthNamesShort: [ "Jan", "Fev", "Mar", "Abr", "Mai", "Jun","Jul", "Ago", "Set", "Out", "Nov", "Dez" ],
     today: 'Hoje',
     clear: 'Limpar',
-    dateFormat: 'dd/mm/yy',
-    weekHeader: 'Wk'
+    dateFormat: 'dd.mm.yy',
+    // weekHeader: 'Wk'
   };
 
   get types(): Array<any> {
@@ -80,10 +80,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   ngOnInit(): void {
+    this.loadCategories();
     this.setCurrentAction();
     this.buildEntryForm();
     this.loadEntry();
-    this.loadCategories();
   }
 
   loadEntry() {
@@ -94,7 +94,9 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       .subscribe(
         (entry) => {
           this.entry = entry;
+          console.log(this.entry);
           this.entryForm.patchValue(entry);
+          console.log(this.entryForm.getRawValue());
         },
         (error) => alert("Ocorreu erro no servidor, tente mais tarde.")
       )
@@ -163,8 +165,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
   actionsForSuccess(entry: Entry): void {
     toastr.success("Solicitação processada com sucesso!");
-    this.router.navigateByUrl("categories", {skipLocationChange: true})
-      .then(() => this.router.navigate(["categories", this.entry.id, "edit"]));
+    this.router.navigateByUrl("entries", {skipLocationChange: true})
+      .then(() => this.router.navigate(["entries", this.entry.id, "edit"]));
   }
 
   private loadCategories(): void {

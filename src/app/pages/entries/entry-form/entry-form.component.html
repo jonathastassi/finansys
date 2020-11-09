@@ -18,7 +18,6 @@
 </div>
 
 <form [formGroup]="entryForm" (ngSubmit)="submitForm()">
-
   <div class="card">
     <div class="card-header">
       Informações sobre o lançamento
@@ -59,7 +58,7 @@
 
         <div class="form-group col-md-2">
           <label for="date">Data</label>
-          <p-calendar id="date" inputStyleClass="form-control" dataFormat="dd/mm/yy" formControlName="date"
+          <p-calendar id="date" inputStyleClass="form-control" dateFormat="dd/mm/yy" formControlName="date"
             dataType="string" [locale]="ptBr" showButtonBar="true">
           </p-calendar>
           <div class="text-danger" *ngIf="entryForm.get('date').invalid && entryForm.get('date').touched">

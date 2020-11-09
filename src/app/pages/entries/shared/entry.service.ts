@@ -14,26 +14,24 @@ export class EntryService extends BaseResourceService<Entry> {
     protected injector: Injector,
     private categoryService: CategoryService
   ) {
-    super('api/entries', injector);
+    super('api/entries', injector, Entry.fromJson);
   }
 
   create(entry: Entry): Observable<Entry> {
-    return this.categoryService.getById(entry.categoryId)
-      .pipe(
-        flatMap(value => {
-          entry.category = value;
-          return super.create(entry);
-        })
-      );
+    return this.getCategoryAndSendEntry(entry, super.create);
   }
 
   update(entry: Entry): Observable<Entry> {
+    return this.getCategoryAndSendEntry(entry, super.update);
+  }
+
+  private getCategoryAndSendEntry(entry: Entry, sendFn: (entry: Entry) => Observable<Entry>): Observable<Entry> {
     return this.categoryService.getById(entry.categoryId)
       .pipe(
         flatMap(
           value => {
             entry.category = value;
-            return super.update(entry);
+            return sendFn(entry);
           }
         )
       );

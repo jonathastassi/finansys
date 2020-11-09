@@ -15,8 +15,8 @@ export class Entry implements BaseResourceModel {
   ) {
   }
 
-  public fromJson<this>(jsonData: any): Entry {
-    throw new Error("Method not implemented.");
+  static fromJson(jsonData: any): Entry {
+    return Object.assign(new Entry(), jsonData);
   }
 
   static types = {

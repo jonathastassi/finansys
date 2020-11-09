@@ -17,13 +17,17 @@ export class EntryService {
 
   getAll(): Observable<Entry[]> {
     return this.http.get<Entry[]>(this.apiPath).pipe(
+      map(x => {
+        return x.map(entry => Object.assign(new Entry(), entry));
+      }),
       catchError(this.handleError),
     );
   }
 
   getById(id: number): Observable<Entry> {
-    return this.http.get<Entry>(`${this.apiPath}/${id}`)
-
+    return this.http.get<Entry>(`${this.apiPath}/${id}`).pipe(
+      map(x => Object.assign(new Entry(), x)),
+    );
   }
 
   create(entry: Entry): Observable<Entry> {

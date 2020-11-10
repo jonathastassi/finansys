@@ -1,14 +1,16 @@
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormFieldErrorComponent } from './form-field-error.component';
 
-describe('FormFieldErrorComponent', () => {
+describe('O componente FormFieldErrorComponent', () => {
   let component: FormFieldErrorComponent;
   let fixture: ComponentFixture<FormFieldErrorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormFieldErrorComponent ]
+      declarations: [ FormFieldErrorComponent ],
+      imports: [ReactiveFormsModule]
     })
     .compileComponents();
   }));
@@ -19,7 +21,16 @@ describe('FormFieldErrorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Deve ser criado', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Dado formcontrol com erro "required", exibir como erro "Campo obrigatório"', () => {
+
+    // create new instance of FormBuilder
+    const formBuilder: FormBuilder = new FormBuilder();
+
+
+    component.formControl =
+  })
 });

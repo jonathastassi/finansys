@@ -6,20 +6,29 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 const routes: Routes = [
   {
     path: '',
-    component: CategoryListComponent
+    component: CategoryListComponent,
+    data: {
+      title: 'Categorias',
+    },
   },
   {
     path: 'new',
-    component: CategoryFormComponent
+    component: CategoryFormComponent,
+    data: {
+      title: 'Cadastro de Nova Categoria',
+    },
   },
   {
     path: ':id/edit',
-    component: CategoryFormComponent
-  }
+    component: CategoryFormComponent,
+    data: {
+      title: 'Editando Categoria',
+    },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CategoriesRoutingModule { }
+export class CategoriesRoutingModule {}

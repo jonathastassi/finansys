@@ -6,20 +6,29 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    component: EntryListComponent
+    component: EntryListComponent,
+    data: {
+      title: 'Lançamentos',
+    },
   },
   {
     path: 'new',
-    component: EntryFormComponent
+    component: EntryFormComponent,
+    data: {
+      title: 'Cadastro de Novo Lançamento',
+    },
   },
   {
     path: ':id/edit',
-    component: EntryFormComponent
-  }
+    component: EntryFormComponent,
+    data: {
+      title: 'Editando Lançamento',
+    },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EntriesRoutingModule { }
+export class EntriesRoutingModule {}

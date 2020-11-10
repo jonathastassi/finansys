@@ -1,11 +1,18 @@
 import { BaseResourceService } from '../../services/base.resource.service';
-import { AfterContentChecked, OnInit, Injector } from '@angular/core';
+import {
+  AfterContentChecked,
+  OnInit,
+  Injector,
+  Component,
+  Injectable,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import toastr from 'toastr';
 import { BaseResourceModel } from '../../models/base.resource.model';
 
+@Injectable()
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   implements OnInit, AfterContentChecked {
   currentAction: string;
@@ -78,7 +85,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
       this.currentAction = 'edit';
     }
   }
-  protected submitForm(): void {
+  public submitForm(): void {
     this.submittingForm = true;
 
     if (this.currentAction === 'new') {
@@ -120,7 +127,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   protected actionsForSuccess(resource: T): void {
     toastr.success('Solicitação processada com sucesso!');
 
-    const baseComponentPath: string = this.route.snapshot.url[0].path;
+    const baseComponentPath: string = this.route.snapshot.parent.url[0].path;
 
     this.router
       .navigateByUrl(baseComponentPath, { skipLocationChange: true })

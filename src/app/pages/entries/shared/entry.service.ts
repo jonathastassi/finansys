@@ -6,10 +6,9 @@ import { CategoryService } from './../../categories/shared/category.service';
 import { Entry } from './entry';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EntryService extends BaseResourceService<Entry> {
-
   constructor(
     protected injector: Injector,
     private categoryService: CategoryService
@@ -18,23 +17,23 @@ export class EntryService extends BaseResourceService<Entry> {
   }
 
   create(entry: Entry): Observable<Entry> {
-    return this.getCategoryAndSendEntry(entry, super.create);
+    return this.getCategoryAndSendEntry(entry, super.create.bind(this));
   }
 
   update(entry: Entry): Observable<Entry> {
-    return this.getCategoryAndSendEntry(entry, super.update);
+    return this.getCategoryAndSendEntry(entry, super.update.bind(this));
   }
 
-  private getCategoryAndSendEntry(entry: Entry, sendFn: (entry: Entry) => Observable<Entry>): Observable<Entry> {
-    return this.categoryService.getById(entry.categoryId)
-      .pipe(
-        flatMap(
-          value => {
-            entry.category = value;
-            return sendFn(entry);
-          }
-        )
-      );
+  private getCategoryAndSendEntry(
+    entry: Entry,
+    sendFn: (entry: Entry) => Observable<Entry>
+  ): Observable<Entry> {
+    return this.categoryService.getById(entry.categoryId).pipe(
+      flatMap((value) => {
+        entry.category = value;
+        return sendFn(entry);
+      }),
+      catchError(this.handleError)
+    );
   }
-
 }

@@ -1,6 +1,8 @@
+import { EntryService } from './../shared/entry.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EntryListComponent } from './entry-list.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 
 describe('EntryListComponent', () => {
   let component: EntryListComponent;
@@ -8,7 +10,9 @@ describe('EntryListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EntryListComponent ]
+      declarations: [ EntryListComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [EntryService]
     })
     .compileComponents();
   }));

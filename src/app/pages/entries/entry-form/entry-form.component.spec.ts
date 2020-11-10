@@ -1,6 +1,10 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CalendarModule } from 'primeng/calendar';
 import { EntryFormComponent } from './entry-form.component';
+
 
 describe('EntryFormComponent', () => {
   let component: EntryFormComponent;
@@ -8,7 +12,8 @@ describe('EntryFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EntryFormComponent ]
+      declarations: [ EntryFormComponent ],
+      imports: [HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule.withRoutes([]),CalendarModule]
     })
     .compileComponents();
   }));

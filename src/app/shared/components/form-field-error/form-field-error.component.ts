@@ -19,7 +19,7 @@ export class FormFieldErrorComponent implements OnInit {
   ngOnInit(): void {}
 
   public get errorMessage(): string | null {
-    if (this.formControl.invalid && this.formControl.touched) {
+    if (this.formControl?.invalid && this.formControl?.touched) {
       return this.getErrorMessage();
     }
 

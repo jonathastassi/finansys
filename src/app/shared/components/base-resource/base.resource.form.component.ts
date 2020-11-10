@@ -1,16 +1,16 @@
-import { BaseResourceService } from '../../services/base.resource.service';
 import {
   AfterContentChecked,
-  OnInit,
-  Injector,
-  Component,
-  Injectable,
+
+
+
+  Injectable, Injector, OnInit
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import toastr from 'toastr';
 import { BaseResourceModel } from '../../models/base.resource.model';
+import { BaseResourceService } from '../../services/base.resource.service';
 
 @Injectable()
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
@@ -79,7 +79,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
     }
   }
   protected setCurrentAction(): void {
-    if (this.route.snapshot.url[0].path === 'new') {
+    if (this.route.snapshot.url[0]?.path === 'new') {
       this.currentAction = 'new';
     } else {
       this.currentAction = 'edit';

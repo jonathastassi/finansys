@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { CategoryService } from 'src/app/pages/categories/shared/category.service';
 import { CategoryFormComponent } from './category-form.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CategoryFormComponent', () => {
   let component: CategoryFormComponent;
@@ -8,7 +11,9 @@ describe('CategoryFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryFormComponent ]
+      declarations: [ CategoryFormComponent ],
+      imports: [HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule.withRoutes([])],
+      providers: [CategoryService]
     })
     .compileComponents();
   }));

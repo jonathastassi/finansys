@@ -3,7 +3,7 @@
         <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
         <li class="breadcrumb-item" *ngFor="let item of urls; let i = index;" [class.active]="isLastUrl(i)">
             <a *ngIf="!isLastUrl(i)" [routerLink]="item.link">{{ item.text }}</a>
-            <span *ngIf="isLastUrl(i)">{{ item.text }}</span>
+            <span *ngIf="isLastUrl(i)">{{ pageTitle || item.text }}</span>
         </li>
     </ol>
 </nav>

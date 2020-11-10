@@ -1,5 +1,5 @@
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 interface BreadCrumbItem {
   text: string;
@@ -12,6 +12,8 @@ interface BreadCrumbItem {
   styleUrls: ['./bread-crumb.component.css'],
 })
 export class BreadCrumbComponent implements OnInit {
+  @Input() pageTitle: string = null;
+
   constructor(private route: ActivatedRoute) {}
 
   urls: Array<BreadCrumbItem> = [];

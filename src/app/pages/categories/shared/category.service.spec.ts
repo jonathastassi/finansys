@@ -1,6 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Category } from 'src/app/pages/categories/shared/category';
 import { CategoryService } from 'src/app/pages/categories/shared/category.service';
 import { BaseResourceServiceSpec } from './../../../shared/services/base.resource.service.spec';
@@ -34,12 +33,12 @@ describe('O CategoryService', () => {
       providers: [
         CategoryService
       ],
-      imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule]
+      imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(CategoryService);
   });
 
-  it('can load instance', () => {
+  it('deve ser criado', () => {
     expect(service).toBeTruthy();
   });
 
